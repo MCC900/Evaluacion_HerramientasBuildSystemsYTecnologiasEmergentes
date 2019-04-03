@@ -1,0 +1,31 @@
+{
+  "name": "tienda_reactjs",
+  "version": "1.0.0",
+  "description": "Proyecto de tienda para la evaluación de NextU, versión usando React.JS",
+  "main": "index.js",
+  "scripts": {
+    "start":"webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MCC900/Evaluacion_HerramientasBuildSystemsYTecnologiasEmergentes.git"
+  },
+  "author": "J. Mariano Cis Carle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MCC900/Evaluacion_HerramientasBuildSystemsYTecnologiasEmergentes/issues"
+  },
+  "homepage": "https://github.com/MCC900/Evaluacion_HerramientasBuildSystemsYTecnologiasEmergentes#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
