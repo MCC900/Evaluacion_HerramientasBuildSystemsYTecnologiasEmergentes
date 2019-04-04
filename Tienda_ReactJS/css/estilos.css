@@ -1,0 +1,47 @@
+* {
+  margin:0px;
+  padding:0px;
+  font-family: 'Spinnaker', cursive;
+}
+
+#app {
+  width:100vw;
+  height:100vh;
+}
+
+.login {
+  color:white;
+  width:100vw;
+  height: 100vh;
+}
+
+.fondo {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width:100vw;
+  height:100vh;
+  display: block;
+}
+
+.loginFondo {
+  background-image:url("../imagenesBase/login-fondo.jpg");
+  filter: brightness(50%);
+}
+
+.vAlign {
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}
+
+.tituloLogin {
+  text-align: center;
+  font-family: 'Spinnaker', cursive;
+}
+
+.subtituloLogin {
+  font-family: 'Spinnaker', cursive;
+  color:white;
+  align: center;
+}
