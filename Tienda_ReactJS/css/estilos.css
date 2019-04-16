@@ -12,13 +12,13 @@
 .login {
   color:white;
   width:100vw;
-  height: 100vh;
+  height:100vh;
 }
 
 .fondo {
   position: fixed;
-  left: 0;
-  right: 0;
+  left:0;
+  right:0;
   width:100vw;
   height:100vh;
   display: block;
@@ -44,4 +44,14 @@
   font-family: 'Spinnaker', cursive;
   color:white;
   align: center;
+}
+
+.inputError {
+  border: 3px solid red;
+}
+
+.lblError {
+  color:red;
+  text-shadow: 1px 1px black, -1px  1px black,  1px -1px black, -1px -1px black;
+  font-weight: bold;
 }

@@ -4,7 +4,9 @@
   "description": "Proyecto de tienda para la evaluación de NextU, versión usando React.JS",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "servidor": "nodemon server/index.js",
+    "generarbd": "node server/generar_bd.js"
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,16 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb-server": "^1.0.0",
+    "mongoose": "^5.5.0",
+    "nodemon": "^1.18.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-foundation": "^0.9.6",
     "react-router-dom": "^5.0.0",
+    "superagent": "^5.0.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
