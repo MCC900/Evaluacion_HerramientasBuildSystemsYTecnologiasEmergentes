@@ -11,6 +11,9 @@ router.post("/login", function(req, res){
         res.send({exito:false, msjError:"No existe el usuario "+req.body.email+" en la Base de Datos"});
       } else {
         if(resultado[0].contrasena == req.body.contrasena){
+          req.session.logueado = true;
+          req.session.email = req.body.email;
+          console.log("El usuario "+req.session.email+" se ha logueado");
           res.send({exito:true});
         } else {
           res.send({exito:false, msjError:"La contraseña es incorrecta"});

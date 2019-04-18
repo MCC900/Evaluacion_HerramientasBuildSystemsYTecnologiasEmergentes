@@ -24,7 +24,7 @@ class Login extends React.Component {
 
   render(){
     if(this.state.exitoLogin){
-      return(<Redirect to="/catalogo"/>);
+      return(<Redirect to="/catalogo" push/>);
     }
     return(
       <div className="login">
@@ -65,7 +65,6 @@ class Login extends React.Component {
           exitoLogin:true,
           errorEnvio:false
         });
-        this.forceUpdate();
       } else {
         if(this.state.msjError == resultado.msjError){
           resultado.msjError = "*** "+resultado.msjError+" ***";
