@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Row, Column, Link as BtnLink } from 'react-foundation';
+import { Cell, Grid, GridContainer, Link as BtnLink } from 'react-foundation';
 
 import FormInput from './FormInput.jsx';
 import conexionBD from './conexionBD';
@@ -23,37 +23,28 @@ class Login extends React.Component {
   }
 
   render(){
+    console.log(Cell.propTypes);
     if(this.state.exitoLogin){
       return(<Redirect to="/catalogo" push/>);
     }
     return(
       <div className="login">
         <div className="fondo loginFondo"/>
-        <div className="vAlign">
-          <Column className="formLogin" centerOnSmall small={8} medium={6} large={4}>
-            <Row>
+        <GridContainer fluid className="cubrirAltura">
+          <Grid alignY="middle" className="cubrirAltura">
+            <Cell small={8} medium={6} large={4} offsetOnSmall={2} offsetOnMedium={3} offsetOnLarge={4}>
               <h3 className="tituloLogin">Inicia Sesión</h3>
-            </Row>
-            <Row>
               <FormInput tipo="email" texto="Correo electrónico" placeholder="Ingrese su email"
                 alCambiarValor={this.cambiaEmail.bind(this)}/>
-            </Row>
-            <Row>
               <FormInput tipo="password" texto="Contraseña" placeholder="Ingrese su contraseña"
                 alCambiarValor={this.cambiaContrasena.bind(this)}/>
-            </Row>
-            <Row>
-              <Column small={8} centerOnSmall>
-                <BtnLink isExpanded
+              <BtnLink isExpanded
                 className={this.state.validCorrecta ? "":"disabled"}
                 onClick={this.state.validCorrecta ? this.clickIngresar.bind(this) : null}>Ingresar</BtnLink>
-              </Column>
-            </Row>
-            <Row>
               <label className={"text-center lblError "+(this.state.errorEnvio ? "":"hide")}>{this.state.msjError}</label>
-            </Row>
-          </Column>
-        </div>
+            </Cell>
+          </Grid>
+        </GridContainer>
       </div>
     );
   }
