@@ -1,10 +1,11 @@
-import * as request from 'superagent';
+import * as superagent from 'superagent';
 
 let urlBase = "http://localhost:3000";
+let request = superagent.agent();
 
 function intentarLogin(email, contrasena, callback){
   request
-  .post(urlBase + '/login')
+  .post(urlBase + '/login').withCredentials()
   .send({email:email, contrasena:contrasena})
   .set("Content-Type", "application/json")
   .then((respuesta) => {
@@ -15,8 +16,27 @@ function intentarLogin(email, contrasena, callback){
       exito:false,
       msjError:"No se pudo conectar con el servidor",
       error:error
-    })
+    });
   })
 }
 
-export default {intentarLogin:intentarLogin};
+function verificarSesion(callback){
+  request
+  .post(urlBase+"/getSesion").withCredentials()
+  .set("Content-Type", "application/json")
+  .then((respuesta)=>{
+    callback(respuesta.body);
+  })
+  .catch((error)=>{
+    callback({
+      exito:false,
+      usuarioLogueado:"",
+      error:error
+    });
+  })
+}
+
+export default {
+  intentarLogin:intentarLogin,
+  verificarSesion:verificarSesion
+};

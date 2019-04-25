@@ -14,12 +14,13 @@ const servidor = http.createServer(app);
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}));
-app.use(session({secret: 'xlS1EWkTfaf3DLZPV001239', cookie:{maxAge:900000}}));
+//Se establece la cookie como secure:false para permitir las rutas http para testing
+app.use(session({secret: 'xlS1EWkTfaf3DLZPV001239', cookie:{maxAge:900000, secure:false}}));
 app.use("", router);
 
 servidor.listen(puerto, function(){

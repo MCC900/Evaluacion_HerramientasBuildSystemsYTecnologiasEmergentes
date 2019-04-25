@@ -23,7 +23,6 @@ class Login extends React.Component {
   }
 
   render(){
-    console.log(Cell.propTypes);
     if(this.state.exitoLogin){
       return(<Redirect to="/catalogo" push/>);
     }

@@ -23,4 +23,9 @@ router.post("/login", function(req, res){
   });
 });
 
+router.post("/getSesion", function(req, res){
+  let usuarioLogueado = req.session.logueado ? req.session.email : "";
+  res.send({usuarioLogueado:usuarioLogueado, exito:true});
+});
+
 module.exports = router;
