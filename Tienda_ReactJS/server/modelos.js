@@ -9,5 +9,13 @@ let usuarioSchema = new Schema({
   contrasena:{type:String, required:true}
 });
 
+let productoSchema = new Schema({
+  nombre:{type:String, required:true},
+  precio:{type:Number, required:true},
+  stock:{type:Number, required:true},
+  nombreArchivo:{type:String, required:true}
+});
+
 let Usuario = mongoose.model('Usuario', usuarioSchema);
-module.exports = {Usuario:Usuario};
+let Producto = mongoose.model('Producto', productoSchema);
+module.exports = {Usuario:Usuario, Producto:Producto};

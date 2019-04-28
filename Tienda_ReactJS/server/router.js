@@ -1,5 +1,6 @@
 const modelos = require("./modelos.js");
 const Usuario = modelos.Usuario;
+const Producto = modelos.Producto;
 const router = require('express').Router();
 
 router.post("/login", function(req, res){
@@ -28,4 +29,17 @@ router.post("/getSesion", function(req, res){
   res.send({usuarioLogueado:usuarioLogueado, exito:true});
 });
 
+router.post("/productos", function(req, res){
+  Producto.find({}, (error, resultado)=>{
+    if(error){
+      res.send({exito:false, msjError:"El servidor de la Base de Datos (mongo) no está disponible", error:error});
+    } else {
+      if(resultado.length == 0){
+        res.send({exito:false, msjError:"No se pudieron encontrar productos en la base de datos."});
+      } else {
+        res.send({exito:true, productos:resultado});
+      }
+    }
+  });
+});
 module.exports = router;

@@ -36,7 +36,24 @@ function verificarSesion(callback){
   })
 }
 
+function obtenerProductos(callback){
+  request
+    .post(urlBase+"/productos").withCredentials()
+    .set("Content-Type", "application/json")
+    .then((respuesta)=>{
+      callback(respuesta.body);
+    })
+    .catch((error)=>{
+      callback({
+        exito:false,
+        msjError:"No se pudo conectar con el servidor",
+        error:error
+      });
+    });
+}
+
 export default {
   intentarLogin:intentarLogin,
-  verificarSesion:verificarSesion
+  verificarSesion:verificarSesion,
+  obtenerProductos:obtenerProductos
 };

@@ -3,9 +3,19 @@ import { GridContainer, Grid, GutterTypes, Cell } from 'react-foundation';
 import BarraSuperior from './BarraSuperior.jsx';
 import DisplayProducto from './DisplayProducto.jsx';
 
+import conexionBD from './conexionBD';
+
 class Catalogo extends React.Component {
+
+  constructor(){
+    super();
+    this.state = {
+      productos:[]
+    }
+    this.cargarProductos();
+  }
+
   render(){
-    console.log(GridContainer.propTypes);
     return(
       <div className="main">
         <div className="fondo mainFondo"/>
@@ -27,11 +37,15 @@ class Catalogo extends React.Component {
                 </Cell>
                 <Cell className="cuadriculaProductos" small={12}>
                   <Grid gutters="margin">
-                    <DisplayProducto srcImagen="./imagenesBase/aguacate.jpg" nombreProducto="Aguacate" precio={5} stock={46}/>
-                    <DisplayProducto srcImagen="./imagenesBase/aguacate.jpg" nombreProducto="Aguacate" precio={5} stock={46}/>
-                    <DisplayProducto srcImagen="./imagenesBase/aguacate.jpg" nombreProducto="Aguacate" precio={5} stock={46}/>
-                    <DisplayProducto srcImagen="./imagenesBase/aguacate.jpg" nombreProducto="Aguacate" precio={5} stock={46}/>
-                    <DisplayProducto srcImagen="./imagenesBase/aguacate.jpg" nombreProducto="Aguacate" precio={5} stock={46}/>
+                    {
+                      this.state.productos.map(producto => <DisplayProducto
+                        key={producto._id}
+                        srcImagen={"./imagenesBase/" + producto.nombreArchivo}
+                        nombreProducto={producto.nombre}
+                        precio={producto.precio}
+                        stock={producto.stock}
+                      />)
+                    }
                   </Grid>
                 </Cell>
               </Grid>
@@ -40,6 +54,17 @@ class Catalogo extends React.Component {
         </GridContainer>
       </div>
     )
+  }
+
+  cargarProductos(){
+    let respuesta = conexionBD.obtenerProductos((respuesta)=>{
+      if(respuesta.exito){
+        this.setState({productos:respuesta.productos});
+      } else {
+        console.log("Error al conectar con el servidor: "+respuesta.msjError);
+        console.log(respuesta.error);
+      }
+    });
   }
 }
 
