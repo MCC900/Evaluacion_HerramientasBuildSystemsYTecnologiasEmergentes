@@ -29,21 +29,31 @@ class Login extends React.Component {
     return(
       <div className="login">
         <div className="fondo loginFondo"/>
+
         <GridContainer fluid className="cubrirAltura">
           <Grid alignY="middle" className="cubrirAltura">
+
             <Cell small={8} medium={6} large={4} offsetOnSmall={2} offsetOnMedium={3} offsetOnLarge={4}>
               <h3 className="tituloLogin">Inicia Sesión</h3>
+
               <FormInput tipo="email" texto="Correo electrónico" placeholder="Ingrese su email"
                 alCambiarValor={this.cambiaEmail.bind(this)}/>
+
               <FormInput tipo="password" texto="Contraseña" placeholder="Ingrese su contraseña"
                 alCambiarValor={this.cambiaContrasena.bind(this)}/>
+
               <BtnLink isExpanded
                 className={this.state.validCorrecta ? "":"disabled"}
-                onClick={this.state.validCorrecta ? this.clickIngresar.bind(this) : null}>Ingresar</BtnLink>
-              <label className={"text-center lblError "+(this.state.errorEnvio ? "":"hide")}>{this.state.msjError}</label>
+                onClick={this.state.validCorrecta ? this.clickIngresar.bind(this) : null}>Ingresar
+              </BtnLink>
+
+              <label className={"text-center lblError "+(this.state.errorEnvio ? "":"hide")}>
+                {this.state.msjError}</label>
             </Cell>
+
           </Grid>
         </GridContainer>
+
       </div>
     );
   }

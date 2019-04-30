@@ -28,4 +28,9 @@ servidor.listen(puerto, function(){
 })
 
 let url = "mongodb://localhost/tienda_reactjs";
-mongoose.connect(url, {useNewUrlParser:true});
+console.log(mongoose.connection.readyState);
+mongoose.connect(url, {useNewUrlParser:true}).then(()=>{
+  console.log("Conectado con la base de datos Mongo.");
+}).catch(()=>{
+  console.log("ERROR: El servidor de mongo no esta disponible. Para solucionarlo, ejecute mongod y luego reinice este servidor.");
+});
