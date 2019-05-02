@@ -1,15 +1,21 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Grid, Cell, Link, Icon } from 'react-foundation';
 
 class DisplayProducto extends React.Component {
   constructor(){
     super();
     this.state = {
-      cantElegida:1
+      cantElegida:1,
+      cambiaPagina:false,
+      urlPagina:""
     }
   }
 
   render(){
+    if(this.state.cambiaPagina){
+      return(<Redirect to={this.state.urlPagina} push/>);
+    }
     return(
       <Cell className="displayProducto" small={6} medium={4} large={3}>
         <div className="mitadSuperiorDisplay" style={{backgroundImage:("url("+this.props.srcImagen+")")}}>
@@ -21,7 +27,8 @@ class DisplayProducto extends React.Component {
           <label className="lblProducto"><b>Unidades Disponibles:</b> {this.props.stock}</label>
           <Grid>
             <Cell small={12}>
-              <Link isExpanded className="btnVerMas">Ver más</Link>
+              <Link isExpanded className="btnVerMas"
+                onClick={this.clickVerMas.bind(this)}>Ver más</Link>
             </Cell>
             <Cell small={12}>
               <Grid gutters="margin">
@@ -45,6 +52,10 @@ class DisplayProducto extends React.Component {
     this.setState(
       {cantElegida:event.target.value}
     );
+  }
+
+  clickVerMas(){
+    this.setState({cambiaPagina:true, urlPagina:"/producto/"+this.props.idProducto});
   }
 }
 

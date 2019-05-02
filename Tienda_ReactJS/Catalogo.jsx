@@ -17,55 +17,47 @@ class Catalogo extends React.Component {
   }
 
   render(){
-    return(
-      <div className="main">
-        <div className="fondo mainFondo"/>
-        <GridContainer>
-
-          <BarraSuperior/>
+return(
+      <Grid>
+        <Cell className="panelPrincipal" small={12}>
 
           <Grid>
-            <Cell className="catalogo" small={12}>
 
+            <Cell className="barraTitulo" small={12}>
               <Grid>
-
-                <Cell className="barraCatalogo" small={12}>
-                  <Grid>
-                    <Cell className="tituloCatalogo" small={6} medium={7} large={8}>
-                      <h4>Catálogo de productos</h4>
-                    </Cell>
-                    <Cell className="barraBusqueda" auto="all">
-                      <label><Icon name="fi-magnifying-glass"/> Búsqueda</label>
-                      <input type="search" onChange={this.cambiaTextoBusqueda.bind(this)}/>
-                    </Cell>
-                  </Grid>
+                <Cell className="titulo" small={6} medium={7} large={8}>
+                  <h4>Catálogo de productos</h4>
                 </Cell>
-
-                <Cell className="cuadriculaProductos" small={12}>
-                  <Grid gutters="margin">
-                    {
-                      this.state.productos.map(producto =>
-                        this.coincideConFiltro(producto.nombre, this.state.filtroBusqueda) ?
-                          <DisplayProducto
-                          key={producto._id}
-                          srcImagen={"./imagenesBase/" + producto.nombreArchivo}
-                          nombreProducto={producto.nombre}
-                          precio={producto.precio}
-                          stock={producto.stock}
-                          />
-                        : null
-                      )
-                    }
-                  </Grid>
+                <Cell className="barraBusqueda" auto="all">
+                  <label><Icon name="fi-magnifying-glass"/> Búsqueda</label>
+                  <input type="search" onChange={this.cambiaTextoBusqueda.bind(this)}/>
                 </Cell>
-
               </Grid>
-
             </Cell>
+
+            <Cell className="cuadriculaProductos" small={12}>
+              <Grid gutters="margin">
+                {
+                  this.state.productos.map(producto =>
+                    this.coincideConFiltro(producto.nombre, this.state.filtroBusqueda) ?
+                      <DisplayProducto
+                      key={producto._id}
+                      srcImagen={"./imagenesBase/" + producto.nombreArchivo}
+                      nombreProducto={producto.nombre}
+                      precio={producto.precio}
+                      stock={producto.stock}
+                      idProducto={producto._id}
+                      />
+                    : null
+                  )
+                }
+              </Grid>
+            </Cell>
+
           </Grid>
 
-        </GridContainer>
-      </div>
+        </Cell>
+      </Grid>
     )
   }
 

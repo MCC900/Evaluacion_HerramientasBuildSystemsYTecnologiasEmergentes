@@ -52,8 +52,27 @@ function obtenerProductos(callback){
     });
 }
 
+function obtenerDetalleProducto(idProducto, callback){
+  request
+    .post(urlBase+"/productos/detalle").withCredentials()
+    .send({idProducto:idProducto})
+    .set("Content-Type", "application/json")
+    .then((respuesta)=>{
+      callback(respuesta.body);
+    })
+    .catch((error)=>{
+      callback({
+        exito:false,
+        msjError:"No se pudo conectar con el servidor",
+        error:error
+      });
+    });
+
+}
+
 export default {
   intentarLogin:intentarLogin,
   verificarSesion:verificarSesion,
-  obtenerProductos:obtenerProductos
+  obtenerProductos:obtenerProductos,
+  obtenerDetalleProducto:obtenerDetalleProducto
 };

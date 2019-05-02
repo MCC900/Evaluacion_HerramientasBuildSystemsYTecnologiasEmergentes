@@ -42,4 +42,18 @@ router.post("/productos", function(req, res){
     }
   });
 });
+
+router.post("/productos/detalle", function(req, res){
+  Producto.find({_id:req.body.idProducto}, (error, resultado)=>{
+    if(error){
+      res.send({exito:false, msjError:"El servidor de la Base de Datos (mongo) no está disponible", error:error});
+    } else {
+      if(resultado.length == 0){
+        res.send({exito:false, msjError:"No se pudo encontrar el producto especificado en la base de datos."});
+      } else {
+        res.send({exito:true, producto:resultado[0]});
+      }
+    }
+  });
+})
 module.exports = router;

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Login from './Login.jsx';
 import Catalogo from './Catalogo.jsx';
+import DisplayDetalladoProducto from './DisplayDetalladoProducto.jsx';
+import PaginaPrincipal from './PaginaPrincipal.jsx';
 
 class App extends React.Component {
   render(){
@@ -10,7 +12,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={Login}/>
-          <Route path="/catalogo" component={Catalogo}/>
+          <Route path="/" component={PaginaPrincipal}/>
         </div>
       </Router>
     );
