@@ -31,9 +31,12 @@ class DisplayProducto extends React.Component {
                 onClick={this.clickVerMas.bind(this)}>Ver más</Link>
             </Cell>
             <Cell small={12}>
-              <Grid gutters="margin">
+              <Grid>
                 <Cell small={8}>
-                  <Link isExpanded className="btnAnadir">Añadir <Icon name="fi-shopping-cart"></Icon></Link>
+                  <Link isExpanded className="btnAnadir"
+                    onClick={this.clickAnadir.bind(this)}>
+                      Añadir <Icon name="fi-shopping-cart"></Icon>
+                  </Link>
                 </Cell>
                 <Cell auto="all">
                   <input type="number" min={1} max={this.props.stock}
@@ -50,12 +53,17 @@ class DisplayProducto extends React.Component {
 
   cambiaCantidad(event){
     this.setState(
-      {cantElegida:event.target.value}
+      {cantElegida:parseInt(event.target.value)}
     );
   }
 
   clickVerMas(){
     this.setState({cambiaPagina:true, urlPagina:"/producto/"+this.props.idProducto});
+  }
+
+  clickAnadir(){
+    this.props.anadirProductoCarrito(this.props.id, this.state.cantElegida);
+    this.state.cantElegida = 1;
   }
 }
 

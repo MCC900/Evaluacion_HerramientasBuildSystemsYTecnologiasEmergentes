@@ -6,7 +6,8 @@ let Schema = mongoose.Schema;
 //--USUARIO--
 let usuarioSchema = new Schema({
   email:{type:String, required:true},
-  contrasena:{type:String, required:true}
+  contrasena:{type:String, required:true},
+  prodsCarrito:{type:[], required:false}
 });
 
 let productoSchema = new Schema({

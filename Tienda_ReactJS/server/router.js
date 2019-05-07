@@ -55,5 +55,40 @@ router.post("/productos/detalle", function(req, res){
       }
     }
   });
+});
+
+router.post("/carrito/actualizar", function(req, res){
+  if(!req.session.logueado){
+    res.send({exito:false, msjError:"nohaylogin"});
+  } else {
+    let prodsCarritoNuevos = req.body.listaProdsCarrito;
+    Usuario.updateOne({email:req.session.email},{prodsCarrito:prodsCarritoNuevos}, (error, resultado)=>{
+      if(error){
+        res.send({exito:false, msjError:"El servidor de la Base de Datos (mongo) no está disponible", error:error});
+      } else {
+        if(resultado.n == 0){
+          res.send({exito:false, msjError:"No se encontró al usuario logueado en la base de datos...?"});
+        } else if(resultado.ok == 0){
+          res.send({exito:false, msjError:"No se pudo actualizar el usuario en la base de datos."});
+        } else {
+          res.send({exito:true});
+        }
+      }
+    });
+  }
+});
+
+router.post("/carrito/getListaProds", function(req, res){
+  if(!req.session.logueado){
+    res.send({exito:false, msjError:"nohaylogin"});
+  } else {
+    Usuario.find({email:req.session.email}, (error, resultado)=>{
+      if(error){
+        res.send({exito:false, msjError:"El servidor de la Base de Datos (mongo) no está disponible", error:error});
+      } else {
+        res.send({exito:true, prodsCarrito:resultado[0].prodsCarrito});
+      }
+    });
+  }
 })
 module.exports = router;

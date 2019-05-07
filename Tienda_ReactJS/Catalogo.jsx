@@ -42,11 +42,13 @@ return(
                     this.coincideConFiltro(producto.nombre, this.state.filtroBusqueda) ?
                       <DisplayProducto
                       key={producto._id}
+                      id={producto._id}
                       srcImagen={"./imagenesBase/" + producto.nombreArchivo}
                       nombreProducto={producto.nombre}
                       precio={producto.precio}
                       stock={producto.stock}
                       idProducto={producto._id}
+                      anadirProductoCarrito={this.anadirProductoCarrito.bind(this)}
                       />
                     : null
                   )
@@ -93,6 +95,10 @@ return(
       //Vemos si nombreProducto contiene la cadena filtro
       return nombreProducto.includes(filtro);
     }
+  }
+
+  anadirProductoCarrito(idProducto, cantidad){
+    this.props.anadirProductoCarrito(idProducto, cantidad);
   }
 }
 

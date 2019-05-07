@@ -67,12 +67,44 @@ function obtenerDetalleProducto(idProducto, callback){
         error:error
       });
     });
-
 }
 
+function actualizarCarrito(listaProdsCarrito, callback){
+  request
+    .post(urlBase+"/carrito/actualizar").withCredentials()
+    .send({listaProdsCarrito:listaProdsCarrito})
+    .set("Content-Type","application/json")
+    .then((respuesta)=>{
+      callback(respuesta.body);
+    })
+    .catch((error)=>{
+      callback({
+        exito:false,
+        msjError:"No se pudo conectar con el servidor",
+        error:error
+      });
+    });
+}
+
+function obtenerCarrito(callback){
+  request
+    .post(urlBase+"/carrito/getListaProds").withCredentials()
+    .then((respuesta)=>{
+      callback(respuesta.body);
+    })
+    .catch((error)=>{
+      callback({
+        exito:false,
+        msjError:"No se pudo conectar con el servidor",
+        error:error
+      });
+    })
+}
 export default {
   intentarLogin:intentarLogin,
   verificarSesion:verificarSesion,
   obtenerProductos:obtenerProductos,
-  obtenerDetalleProducto:obtenerDetalleProducto
+  obtenerDetalleProducto:obtenerDetalleProducto,
+  actualizarCarrito:actualizarCarrito,
+  obtenerCarrito:obtenerCarrito
 };

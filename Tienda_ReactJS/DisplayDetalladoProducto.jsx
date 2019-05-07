@@ -13,7 +13,6 @@ class DisplayDetalladoProducto extends React.Component {
       producto:null,
       volver:false
     };
-    console.log(props.match.params.idProducto);
     this.cargarProducto(props.match.params.idProducto.toLowerCase());
   }
 
@@ -44,8 +43,8 @@ class DisplayDetalladoProducto extends React.Component {
     );
   }
 
-  cargarProducto(nombreProducto){
-    let respuesta = conexionBD.obtenerDetalleProducto(nombreProducto, (respuesta)=>{
+  cargarProducto(idProducto){
+    let respuesta = conexionBD.obtenerDetalleProducto(idProducto, (respuesta)=>{
       if(respuesta.exito){
         this.setState({producto:respuesta.producto});
       } else {
