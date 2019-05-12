@@ -7,17 +7,19 @@ import conexionBD from './conexionBD';
 
 class Catalogo extends React.Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       productos:[],
       filtroBusqueda:""
     }
+
+    //Cargamos los productos del catálogo al iniciar
     this.cargarProductos();
   }
 
   render(){
-return(
+    return(
       <Grid>
         <Cell className="panelPrincipal" small={12}>
 
@@ -42,13 +44,13 @@ return(
                     this.coincideConFiltro(producto.nombre, this.state.filtroBusqueda) ?
                       <DisplayProducto
                       key={producto._id}
-                      id={producto._id}
                       srcImagen={"./imagenesBase/" + producto.nombreArchivo}
                       nombreProducto={producto.nombre}
                       precio={producto.precio}
                       stock={producto.stock}
                       idProducto={producto._id}
-                      anadirProductoCarrito={this.anadirProductoCarrito.bind(this)}
+                      anadirProductoCarrito={this.props.anadirProductoCarrito}
+                      prodsCarrito={this.props.prodsCarrito}
                       />
                     : null
                   )
@@ -63,21 +65,27 @@ return(
     )
   }
 
+  //Obtiene los productos de la BD del servidor
   cargarProductos(){
     let respuesta = conexionBD.obtenerProductos((respuesta)=>{
       if(respuesta.exito){
+        //Asignamos los productos al array del state. Esto ejecutará render(), generando los DisplayProducto
         this.setState({productos:respuesta.productos});
       } else {
+        //ERROR
         console.log("Error al conectar con el servidor: "+respuesta.msjError);
         console.log(respuesta.error);
       }
     });
   }
 
+  //Se ejecuta en onChange de la barra buscadora
   cambiaTextoBusqueda(event){
+    //Actualizamos el filto
     this.setState({filtroBusqueda:event.target.value});
   }
 
+  //Devuelve true si el nombre de un producto pasa por el filtro de búsqueda
   coincideConFiltro(nombreProducto, filtro){
 
     if(filtro == ""){
@@ -95,10 +103,6 @@ return(
       //Vemos si nombreProducto contiene la cadena filtro
       return nombreProducto.includes(filtro);
     }
-  }
-
-  anadirProductoCarrito(idProducto, cantidad){
-    this.props.anadirProductoCarrito(idProducto, cantidad);
   }
 }
 

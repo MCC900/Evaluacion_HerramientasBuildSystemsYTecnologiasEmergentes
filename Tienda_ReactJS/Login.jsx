@@ -61,6 +61,7 @@ class Login extends React.Component {
   clickIngresar(){
     this.intentarLogin((resultado) => {
       if(resultado.exito){
+        console.log("Usuario "+this.emailIngresado+" logueado");
         this.setState({
           exitoLogin:true,
           errorEnvio:false
@@ -80,18 +81,21 @@ class Login extends React.Component {
     });
   }
 
+  //Al modificarse el input del email
   cambiaEmail(email, esValido){
     this.emailIngresado = email;
     this.emailValidCorrecta = esValido;
     this.verificarValidarDatos();
   }
 
+  //Al modificarse el input de la contraseña
   cambiaContrasena(contrasena, esValido){
     this.contrasenaIngresada = contrasena;
     this.contrasenaValidCorrecta = esValido;
     this.verificarValidarDatos();
   }
 
+  //Validamos los campos del lado del cliente
   verificarValidarDatos(){
     if(!this.state.validCorrecta && this.emailValidCorrecta && this.contrasenaValidCorrecta){
       this.setState({validCorrecta:true});
@@ -100,12 +104,12 @@ class Login extends React.Component {
     }
   }
 
+  //Prueba a hacer login con el email y la contraseña ingresada enviando los datos al servidor.
   intentarLogin(callback){
     let email = this.emailIngresado;
     let contrasena = this.contrasenaIngresada;
 
     conexionBD.intentarLogin(email, contrasena, (respuesta) => {
-      console.log(respuesta);
       callback(respuesta);
     });
 

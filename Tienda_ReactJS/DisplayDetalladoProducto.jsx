@@ -13,13 +13,18 @@ class DisplayDetalladoProducto extends React.Component {
       producto:null,
       volver:false
     };
+
+    //Cargamos el detalle del producto, a partir de la id pasada a través de la URL (!)
+    //Ej: localhost:8080/producto/5cc50e5cfa0df01d94ac951b
     this.cargarProducto(props.match.params.idProducto.toLowerCase());
   }
 
   render(){
+
     if(this.state.volver){
       return(<Redirect to="/catalogo"/>);
     }
+
     return(
       <Grid>
         <Cell className="panelPrincipal" small={12}>
@@ -43,6 +48,7 @@ class DisplayDetalladoProducto extends React.Component {
     );
   }
 
+  //Obtiene los datos del producto del servidor
   cargarProducto(idProducto){
     let respuesta = conexionBD.obtenerDetalleProducto(idProducto, (respuesta)=>{
       if(respuesta.exito){
@@ -54,6 +60,7 @@ class DisplayDetalladoProducto extends React.Component {
     });
   }
 
+  //Regresa al catálogo
   clickAtras(){
     this.setState({volver:true});
   }

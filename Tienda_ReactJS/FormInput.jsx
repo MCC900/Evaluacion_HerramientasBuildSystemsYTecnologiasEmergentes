@@ -1,6 +1,7 @@
 import React from 'react';
 
 class FormInput extends React.Component {
+  //FormInput es un componente que puede ser un input de email o de contraseña, se utiliza para los dos
   constructor(){
     super();
     this.state = {
@@ -29,6 +30,7 @@ class FormInput extends React.Component {
     );
   }
 
+  //Valida el formulario cada vez que hay un cambio
   actualizarEstado(event){
     let valorIngresado = event.target.value;
     let validCorrecta = true;
@@ -48,6 +50,7 @@ class FormInput extends React.Component {
       msjError:msjError
     });
 
+    //Llamamos la función pasada por props cuando cambia el valor ingresado
     this.props.alCambiarValor(valorIngresado, validCorrecta);
   }
 

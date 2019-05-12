@@ -132,3 +132,21 @@
 .iconoNotifCarrito {
   background-color: red;
 }
+
+.totalCarrito {
+  width:100%;
+  margin-left:20px;
+}
+
+.btnCancelar {
+  background-color: #F24;
+  margin-right: 10px;
+}
+
+.btnCancelar:hover {
+  background-color: #D02;
+}
+
+.btnDesactivado, .btnDesactivado:hover {
+  background-color: grey;
+}

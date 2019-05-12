@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { TopBar, TopBarLeft, TopBarRight, Menu, MenuItem, Icon, Cell, Badge } from 'react-foundation';
+
+import conexionBD from './conexionBD';
 
 class BarraSuperior extends React.Component {
   constructor() {
@@ -16,12 +18,26 @@ class BarraSuperior extends React.Component {
           </TopBarLeft>
           <TopBarRight>
             <Menu className="barraSuperior">
-              <MenuItem><Link to="/catalogo"><Icon name="fi-thumbnails"></Icon> <span>Catálogo</span></Link></MenuItem>
-              <MenuItem><Link to="/carrito"><Icon name="fi-shopping-cart"></Icon> <span>Carrito</span>
-                {this.props.cantProdsCarrito == 0 ? null :
-                <Badge className="iconoNotifCarrito">{this.props.cantProdsCarrito}</Badge>}
-                </Link></MenuItem>
-              <MenuItem><Link to="/"><Icon name="fi-x"></Icon> <span>Cerrar sesión</span></Link></MenuItem>
+              <MenuItem>
+                <Link to="/catalogo">
+                  <Icon name="fi-thumbnails"></Icon>Catálogo
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/carrito">
+                  <Icon name="fi-shopping-cart"></Icon>Carrito
+                  {
+                    this.props.cantProdsCarrito == 0 ? null :
+                    <Badge className="iconoNotifCarrito">{this.props.cantProdsCarrito}</Badge>
+                  }
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <a onClick={this.cerrarSesion.bind(this)}>
+                  <Icon name={this.props.estadoLogin == 2 ? "fi-x":"fi-home"}/>
+                  {this.props.estadoLogin == 2 ? "Cerrar sesión" : "Login"}
+                </a>
+              </MenuItem>
             </Menu>
           </TopBarRight>
         </TopBar>
@@ -33,6 +49,14 @@ class BarraSuperior extends React.Component {
         </Cell>
       </div>
     );
+  }
+
+  /*Cierra la sesión en el servidor. Funcione o no regresa a la página de login llamando
+   a la función del componente Login pasada por props */
+  cerrarSesion(){
+    conexionBD.cerrarSesion((respuesta)=>{
+      this.props.irALogin();
+    });
   }
 }
 

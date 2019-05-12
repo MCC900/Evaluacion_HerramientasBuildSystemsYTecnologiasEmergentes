@@ -20,7 +20,7 @@ app.all('/*', function(req, res, next) {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}));
 //Se establece la cookie como secure:false para permitir las rutas http para testing
-app.use(session({secret: 'xlS1EWkTfaf3DLZPV001239', cookie:{maxAge:900000, secure:false}}));
+app.use(session({secret: 'xlS1EWkTfaf3DLZPV001239', cookie:{maxAge:900000, rolling:true, secure:false}}));
 app.use("", router);
 
 servidor.listen(puerto, function(){

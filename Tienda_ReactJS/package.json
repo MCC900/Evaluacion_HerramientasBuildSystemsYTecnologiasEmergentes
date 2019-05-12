@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "servidor": "nodemon server/index.js",
-    "generarbd": "node server/generar_bd.js"
+    "generarbd": "node server/generar_bd.js",
+    "restock": "node server/restock_productos.js"
   },
   "repository": {
     "type": "git",

@@ -3,6 +3,7 @@ const modelos = require('./modelos.js');
 const Usuario = modelos.Usuario;
 const Producto = modelos.Producto;
 
+//Conectamos con la base de datos tienda_reactjs
 let url = "mongodb://localhost/tienda_reactjs";
 mongoose.connect(url, {useNewUrlParser:true});
 mongoose.connection.on('error', (error)=>{
@@ -40,12 +41,20 @@ let productos = [
 ];
 
 function generarUsuarios(){
+  /* Debido a que los usuarios se crean de uno en uno con la función .save de mongoose,
+  los contamos para que el callback de .save pueda determinar cuando se generó el último,
+  y así terminar y pasar a la parte de productos. */
   let ususCreados = 0;
 
   for(let i = 0; i<usuarios.length; i++){
     let usu = usuarios[i];
+
+    //Buscamos si ya existe este usuario, en caso de llamar a "npm run generarbd" dos veces por cualquir motivo
     Usuario.find({email:usu.email}, (error, resultado)=>{
       if(resultado.length == 0){
+        //No existe el usuario
+
+        //Lo creamos
         let usuNuevo = new Usuario({email:usu.email, contrasena:usu.contrasena});
         usuNuevo.save((error)=>{
           if(error){
@@ -55,17 +64,18 @@ function generarUsuarios(){
           }
 
           ususCreados++;
-          if(ususCreados == usuarios.length){
+          if(ususCreados == usuarios.length){ //Este sería el último usuario de la lista
             console.log("...");
-            generarProductos();
+            generarProductos(); //Continuamos con el proceso
           }
         });
       } else {
+        //Usuario ya existente
         console.log("El usuario "+usu.nombre+" ya existe en la base de datos.");
         ususCreados++;
-        if(ususCreados == usuarios.length){
+        if(ususCreados == usuarios.length){  //Este sería el último usuario de la lista
           console.log("...");
-          generarProductos();
+          generarProductos(); //Continuamos con el proceso
         }
       }
     });
@@ -73,9 +83,11 @@ function generarUsuarios(){
 }
 
 function rand(){
-  return Math.floor(Math.random()*96 + 5);
+  return Math.floor(Math.random()*96 + 5); //Número entre 5 y 100
 }
 
+
+//Esta función se comporta de forma idéntica a generarUsuarios()
 function generarProductos(){
   let prodsCreados = 0;
 
@@ -94,7 +106,7 @@ function generarProductos(){
           prodsCreados++;
           if(prodsCreados == productos.length){
             console.log("Fin.");
-            process.exit();
+            process.exit(); //Cerramos el programa y liberamos la consola
           }
         });
       } else {
@@ -102,7 +114,7 @@ function generarProductos(){
         prodsCreados++;
         if(prodsCreados == productos.length){
           console.log("Fin.");
-          process.exit();
+          process.exit(); //Cerramos el programa y liberamos la consola
         }
       }
     });

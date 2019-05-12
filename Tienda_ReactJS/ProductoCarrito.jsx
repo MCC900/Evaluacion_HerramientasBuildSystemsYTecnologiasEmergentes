@@ -11,6 +11,7 @@ class ProductoCarrito extends React.Component {
       producto:null,
       cantidad:0
     }
+    //Inicializamos el componente cargando el producto y la cantidad desde el servidor
     this.cargarProducto(props.idProducto);
   }
 
@@ -38,11 +39,16 @@ class ProductoCarrito extends React.Component {
     );
   }
 
+  //--Carga este ítem del carrito obtieniendo los datos del servidor
   cargarProducto(idProducto){
     let respuesta = conexionBD.obtenerDetalleProducto(idProducto, (respuesta)=>{
       if(respuesta.exito){
         this.setState({producto:respuesta.producto, cantidad:this.props.cantidad});
+
+        //Sumamos este subtotal al total con la función del Carrito pasada por props
+        this.props.anadirSubtotal(respuesta.producto.precio * this.props.cantidad);
       } else {
+        //ERROR
         console.log("Error al conectar con el servidor: "+respuesta.msjError);
         console.log(respuesta.error);
       }
