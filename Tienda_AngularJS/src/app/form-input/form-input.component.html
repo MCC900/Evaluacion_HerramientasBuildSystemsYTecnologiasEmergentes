@@ -1,0 +1,5 @@
+<label class="subtituloLogin">{{texto}}:
+  <span class="lblError" *ngIf="mostrarMsjError">({{msjError}})</span>
+  <input [ngClass]="{inputError:mostrarMsjError}" [type]="tipo" [placeholder]="placeholder"
+         (input)="actualizarEstado($event.target.value)">
+</label>

@@ -1,0 +1,20 @@
+<div class="login">
+  <div class="fondo loginFondo"></div>
+
+  <div class="grid-container fluid cubrirAltura">
+    <div class="grid-x align-middle cubrirAltura">
+      <div class="cell small-8 medium-6 large-4 small-offset-2 medium-offset-3 large-offset-4">
+
+        <h3 class="tituloLogin">Inicia Sesión</h3>
+
+        <form-input #email [texto]="'Correo electrónico'" [tipo]="'email'"
+          [placeholder]="'Ingrese su email'" [alCambiarValor]="this.cambiaEmail.bind(this)"></form-input>
+        <form-input #contrasena [texto]="'Contraseña'" [tipo]="'password'"
+          [placeholder]="'Ingrese su contraseña'" [alCambiarValor]="this.cambiaContrasena.bind(this)"></form-input>
+
+        <div class="button expanded">Ingresar</div>
+        <label class="text-center lblError" *ngIf="errorEnvio">{{msjError}}</label>
+      </div>
+    </div>
+  </div>
+</div>
