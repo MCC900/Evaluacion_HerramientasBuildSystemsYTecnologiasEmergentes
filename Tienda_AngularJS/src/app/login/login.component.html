@@ -12,7 +12,7 @@
         <form-input #contrasena [texto]="'Contraseña'" [tipo]="'password'"
           [placeholder]="'Ingrese su contraseña'" [alCambiarValor]="this.cambiaContrasena.bind(this)"></form-input>
 
-        <div class="button expanded">Ingresar</div>
+        <div [ngClass]="{button:true, expanded:true, disabled:!validCorrecta}" (click)="clickIngresar()">Ingresar</div>
         <label class="text-center lblError" *ngIf="errorEnvio">{{msjError}}</label>
       </div>
     </div>
