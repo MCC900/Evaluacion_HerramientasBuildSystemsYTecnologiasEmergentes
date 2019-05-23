@@ -7,12 +7,16 @@
 
         <h3 class="tituloLogin">Inicia Sesión</h3>
 
-        <form-input #email [texto]="'Correo electrónico'" [tipo]="'email'"
-          [placeholder]="'Ingrese su email'" [alCambiarValor]="this.cambiaEmail.bind(this)"></form-input>
-        <form-input #contrasena [texto]="'Contraseña'" [tipo]="'password'"
-          [placeholder]="'Ingrese su contraseña'" [alCambiarValor]="this.cambiaContrasena.bind(this)"></form-input>
+        <form>
+          <form-input #email [texto]="'Correo electrónico'" [tipo]="'email'"
+            [placeholder]="'Ingrese su email'" [alCambiarValor]="this.cambiaEmail.bind(this)"></form-input>
+          <form-input #contrasena [texto]="'Contraseña'" [tipo]="'password'"
+            [placeholder]="'Ingrese su contraseña'" [alCambiarValor]="this.cambiaContrasena.bind(this)"></form-input>
 
-        <div [ngClass]="{button:true, expanded:true, disabled:!validCorrecta}" (click)="clickIngresar()">Ingresar</div>
+
+          <div type="submit" [ngClass]="{button:true, expanded:true, disabled:!validCorrecta}" (click)="clickIngresar($event)">Ingresar</div>
+
+        </form>
         <label class="text-center lblError" *ngIf="errorEnvio">{{msjError}}</label>
       </div>
     </div>

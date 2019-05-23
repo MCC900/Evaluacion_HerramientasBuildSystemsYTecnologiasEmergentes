@@ -1,3 +1,32 @@
-<p>
-  barra-superior works!
-</p>
+<div class="top-bar barraSuperior">
+  <div class="top-bar-left">
+    <h5>Tienda Web</h5>
+  </div>
+  <div class="top-bar-right">
+    <div class="menu barraSuperior">
+      <div class="menu-item">
+        <a [routerLink]="['/catalogo']">
+          <i class="fi-thumbnails"></i> Catálogo
+        </a>
+      </div>
+      <div class="menu-item">
+        <a [routerLink]="['/carrito']">
+          <i class="fi-shopping-cart"></i> Carrito
+        </a>
+      </div>
+      <div class="menu-item">
+        <a (click)="cerrarSesion()">
+          <i [class]="clienteTiendaService.estadoLogin == 2 ? 'fi-x':'fi-home'"></i>
+          {{clienteTiendaService.estadoLogin == 2 ? "Cerrar sesión" : "Login"}}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cell small-12 msjBienvenida">
+  {{ clienteTiendaService.estadoLogin == 0 ? "Verificando sesión..." :
+    (clienteTiendaService.estadoLogin == 1 ? "Navegando como invitado" :
+    (clienteTiendaService.estadoLogin == 2 ? "Bienvenido, "+clienteTiendaService.usuarioLogueado :
+    (clienteTiendaService.estadoLogin == 3 ? "Sin conexión con el servidor" : "ERROR")))
+  }}
+</div>

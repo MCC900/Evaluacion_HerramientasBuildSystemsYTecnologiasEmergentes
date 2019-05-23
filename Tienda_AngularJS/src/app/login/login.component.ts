@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { ClienteTiendaService } from '../cliente-tienda.service';
 import { ConexionBDService } from '../conexion-bd.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { ConexionBDService } from '../conexion-bd.service';
 export class LoginComponent {
   constructor(
     private conexionBDService:ConexionBDService,
-    private router:Router
+    private clienteTiendaService:ClienteTiendaService
   ){}
 
   validCorrecta:boolean = false;
@@ -54,13 +53,14 @@ export class LoginComponent {
     });
   }
 
-  clickIngresar(){
+  clickIngresar(event){
+    event.preventDefault();
     this.intentarLogin((resultado) => {
       if(resultado.exito){
         console.log("Usuario "+this.emailIngresado+" logueado");
         this.exitoLogin = true;
         this.errorEnvio = false;
-        this.router.navigate(['catalogo']);
+        this.clienteTiendaService.cambiarPagina("/catalogo");
       } else {
         if(this.msjError == resultado.msjError){
           resultado.msjError = "*** "+resultado.msjError+" ***";
