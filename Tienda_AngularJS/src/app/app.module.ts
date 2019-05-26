@@ -11,6 +11,7 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { BarraSuperiorComponent } from './barra-superior/barra-superior.component';
 import { DisplayDetalladoProductoComponent } from './display-detallado-producto/display-detallado-producto.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { DisplayProductoComponent } from './display-producto/display-producto.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CarritoComponent } from './carrito/carrito.component';
     CatalogoComponent,
     BarraSuperiorComponent,
     DisplayDetalladoProductoComponent,
-    CarritoComponent
+    CarritoComponent,
+    DisplayProductoComponent
   ],
   imports: [
     HttpClientModule,

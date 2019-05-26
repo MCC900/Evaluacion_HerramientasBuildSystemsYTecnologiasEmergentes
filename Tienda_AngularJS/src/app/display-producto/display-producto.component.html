@@ -1,0 +1,40 @@
+
+  <div class="mitadSuperiorDisplay" [ngStyle]="{backgroundImage:'url('+srcImagen+')'}">
+    <img [src]="srcImagen"/>
+  </div>
+  <div class="mitadInferiorDisplay">
+    <h4>{{nombreProducto}}</h4>
+    <label class="lblProducto"><b>Precio: $</b> {{precio}}</label>
+    <label class="lblProducto"><b>Unidades Disponibles:</b> {{stock}}</label>
+    <div class="grid-x">
+
+      <div class="cell small-12">
+        <div class="button expanded btnVerMas">Ver más</div>
+      </div>
+
+      <div class="cell small-12">
+        <div class="grid-x">
+
+          <div class="cell small-8">
+            <div [ngClass]="'button ' + (stock > 0 ? cantElegida > 0 ? 'btnAnadir' : 'btnCancelar' : 'btnDesactivado')">
+              {{
+                stock > 0 ? (
+                estaEnCarrito
+                ?
+                cantElegida == 0 ? 'Quitar' : 'Cambiar'
+                :
+                'Añadir'
+                ) : 'Sin stock'
+              }}
+              <i [ngClass]="cantElegida > 0 ? 'fi-shopping-cart':'fi-x'"></i>
+            </div>
+          </div>
+
+          <div class="cell auto">
+            <input type="number" [min]="estaEnCarrito || stock == 0 ? 0 : 1" [max]="stock"
+              [value]="cantElegida">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

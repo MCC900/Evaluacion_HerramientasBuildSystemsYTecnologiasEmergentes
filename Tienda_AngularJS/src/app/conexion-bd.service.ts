@@ -51,4 +51,21 @@ export class ConexionBDService {
       });
     });
   }
+
+  obtenerProductos(callback){
+    this.llamadaAjax("/productos", "", callback);
+  }
+
+  llamadaAjax(ruta, datos, callback){
+    let obsvRespuesta = this.httpClient.post(this.urlBase + ruta, "", this.options);
+    obsvRespuesta.subscribe((respuesta:any)=>{
+      callback(respuesta.body ? respuesta.body:respuesta);
+    }, (error)=>{
+      callback({
+        exito:false,
+        msjError:"No se pudo conectar con el servidor",
+        error:error
+      });
+    });
+  }
 }

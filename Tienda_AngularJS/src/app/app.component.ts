@@ -8,5 +8,4 @@ import { ConexionBDService } from './conexion-bd.service';
   providers: [ ConexionBDService ]
 })
 export class AppComponent {
-  title = 'Tienda-AngularJS';
 }

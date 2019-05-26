@@ -27,7 +27,7 @@
 }
 
 .loginFondo {
-  background-image:url("../imagenesBase/login-fondo.jpg");
+  background-image:url("assets/imagenesBase/login-fondo.jpg");
   filter: brightness(50%);
 }
 
@@ -61,7 +61,7 @@
 }
 
 .mainFondo {
-  background-image:url("../imagenesBase/main-fondo.jpg");
+  background-image:url("assets/imagenesBase/main-fondo.jpg");
 }
 
 .barraSuperior h5{
