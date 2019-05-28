@@ -12,60 +12,39 @@ export class ConexionBDService {
   httpHeaders:HttpHeaders = new HttpHeaders({'Content-Type':'application/json'});
   options = {headers:this.httpHeaders, withCredentials:true,  observe:"response" as 'body'};
 
-  intentarLogin(email, contrasena, callback){
-    let datos = JSON.stringify({email:email, contrasena:contrasena});
-    let obsvRespuesta = this.httpClient.post(this.urlBase + "/login", datos, this.options);
+  llamadaAjax(ruta, datos, callback){
+    let obsvRespuesta = this.httpClient.post(this.urlBase + ruta, datos, this.options);
     obsvRespuesta.subscribe((respuesta:any)=>{
       callback(respuesta.body ? respuesta.body:respuesta);
-    },(error)=>{
+    }, (error)=>{
       callback({
         exito:false,
         msjError:"No se pudo conectar con el servidor",
         error:error
       });
     });
+  }
+
+  intentarLogin(email, contrasena, callback){
+    let datos = JSON.stringify({email:email, contrasena:contrasena});
+    this.llamadaAjax("/login", datos, callback);
   }
 
   cerrarSesion(callback){
-    let obsvRespuesta = this.httpClient.post(this.urlBase + "/logout", "", this.options);
-    obsvRespuesta.subscribe((respuesta:any)=>{
-      callback(respuesta.body ? respuesta.body:respuesta);
-    }, (error)=>{
-      callback({
-        exito:false,
-        msjError:"No se pudo conectar con el servidor",
-        error:error
-      });
-    });
+    this.llamadaAjax("/logout", "", callback);
   }
 
   verificarSesion(callback){
-    let obsvRespuesta = this.httpClient.post(this.urlBase + "/getSesion", "", this.options);
-    obsvRespuesta.subscribe((respuesta:any)=>{
-      callback(respuesta.body ? respuesta.body:respuesta);
-    }, (error)=>{
-      callback({
-        exito:false,
-        msjError:"No se pudo conectar con el servidor",
-        error:error
-      });
-    });
+    this.llamadaAjax("/getSesion", "", callback);
   }
 
   obtenerProductos(callback){
     this.llamadaAjax("/productos", "", callback);
   }
 
-  llamadaAjax(ruta, datos, callback){
-    let obsvRespuesta = this.httpClient.post(this.urlBase + ruta, "", this.options);
-    obsvRespuesta.subscribe((respuesta:any)=>{
-      callback(respuesta.body ? respuesta.body:respuesta);
-    }, (error)=>{
-      callback({
-        exito:false,
-        msjError:"No se pudo conectar con el servidor",
-        error:error
-      });
-    });
+  obtenerDetalleProducto(idProducto, callback){
+    let datos = JSON.stringify({idProducto:idProducto});
+    this.llamadaAjax("/productos/detalle", datos, callback);
   }
+
 }

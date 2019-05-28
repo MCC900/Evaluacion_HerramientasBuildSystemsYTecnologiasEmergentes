@@ -18,7 +18,6 @@ export class ClienteTiendaService {
 
   getSesion(){
     this.conexionBDService.verificarSesion((respuesta)=>{
-      console.log(respuesta);
       if(respuesta.exito){
         if(respuesta.usuarioLogueado == ""){
           this.estadoLogin = 1; //Navegando como invitado

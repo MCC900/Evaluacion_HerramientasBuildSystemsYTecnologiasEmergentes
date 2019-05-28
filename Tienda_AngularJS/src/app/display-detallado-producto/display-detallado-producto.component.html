@@ -1,3 +1,19 @@
-<p>
-  display-detallado-producto works!
-</p>
+<div class="grid-x">
+  <div class="cell panelPrincipal small-12">
+    <div class="grid-x grid-margin-x">
+      <div class="cell barraTitulo small-12">
+        <h4>{{producto ? producto.nombre : "..."}}</h4>
+      </div>
+      <div class="cell margenInferior small-12 medium-6">
+        <img [src]="producto ? 'assets/imagenesBase/'+producto.nombreArchivo : ''">
+      </div>
+      <div class="cell margenInferior small-12 medium-6">
+        <label class="lblProducto"><b>Precio: $</b>{{producto ? producto.precio : "..."}}</label>
+        <label class="lblProducto"><b>Unidades Disponibles: </b>{{producto ? producto.stock : "..."}}</label>
+      </div>
+      <div class="cell small-12">
+        <div class="button" (click)="clickAtras()"><i class="fi-arrow-left"></i> Atrás</div>
+      </div>
+    </div>
+  </div>
+</div>

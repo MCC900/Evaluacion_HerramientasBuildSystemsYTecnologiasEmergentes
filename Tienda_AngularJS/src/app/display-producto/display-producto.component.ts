@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ClienteTiendaService } from '../cliente-tienda.service';
 
 @Component({
   selector: 'display-producto',
@@ -6,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./display-producto.component.css']
 })
 export class DisplayProductoComponent{
+  @Input() idProducto:string;
   @Input() srcImagen:string;
   @Input() nombreProducto:string;
   @Input() precio:number;
@@ -14,5 +16,9 @@ export class DisplayProductoComponent{
   cantElegida:number = 1;
   estaEnCarrito:boolean = false;
 
-  constructor() { }
+  constructor(private clienteTiendaService:ClienteTiendaService) { }
+
+  clickVerMas(){
+    this.clienteTiendaService.cambiarPagina("/producto/"+this.idProducto);
+  }
 }
