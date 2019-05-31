@@ -47,4 +47,16 @@ export class ConexionBDService {
     this.llamadaAjax("/productos/detalle", datos, callback);
   }
 
+  obtenerCarrito(callback){
+    this.llamadaAjax("/carrito/getListaProds", "", callback);
+  }
+
+  actualizarCarrito(listaProdsCarrito, callback){
+    let datos = JSON.stringify({listaProdsCarrito:listaProdsCarrito});
+    this.llamadaAjax("/carrito/actualizar", datos, callback);
+  }
+
+  realizarPago(callback){
+    this.llamadaAjax("/carrito/pagar", "", callback);
+  }
 }

@@ -75,7 +75,6 @@ router.post("/productos", function(req, res){
 //--OBTENER "DETALLE" DE UN PRODUCTO PARTICULAR--
 router.post("/productos/detalle", function(req, res){
   //req.body: {idProducto}
-  console.log(req.body.idProducto);
   Producto.find({_id:req.body.idProducto}, (error, resultado)=>{
     if(error){
       //ERROR

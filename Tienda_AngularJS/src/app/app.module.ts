@@ -12,6 +12,7 @@ import { BarraSuperiorComponent } from './barra-superior/barra-superior.componen
 import { DisplayDetalladoProductoComponent } from './display-detallado-producto/display-detallado-producto.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { DisplayProductoComponent } from './display-producto/display-producto.component';
+import { ProductoCarritoComponent } from './producto-carrito/producto-carrito.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DisplayProductoComponent } from './display-producto/display-producto.co
     BarraSuperiorComponent,
     DisplayDetalladoProductoComponent,
     CarritoComponent,
-    DisplayProductoComponent
+    DisplayProductoComponent,
+    ProductoCarritoComponent
   ],
   imports: [
     HttpClientModule,

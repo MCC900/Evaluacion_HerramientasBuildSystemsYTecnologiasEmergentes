@@ -13,12 +13,24 @@ export class DisplayProductoComponent{
   @Input() precio:number;
   @Input() stock:number;
 
-  cantElegida:number = 1;
-  estaEnCarrito:boolean = false;
+  @Input() cantElegida:number = 1;
+  @Input() estaEnCarrito:boolean = false;
 
   constructor(private clienteTiendaService:ClienteTiendaService) { }
 
+  ngOnInit(){
+  }
   clickVerMas(){
     this.clienteTiendaService.cambiarPagina("/producto/"+this.idProducto);
+  }
+
+  clickAnadir(){
+    this.clienteTiendaService.anadirProductoCarrito(this.idProducto, this.cantElegida);
+    this.estaEnCarrito = this.cantElegida > 0;
+    this.cantElegida = this.cantElegida == 0 ? 1 : 0;
+  }
+
+  cambiaCantidad(event){
+    this.cantElegida = event.target.value;
   }
 }

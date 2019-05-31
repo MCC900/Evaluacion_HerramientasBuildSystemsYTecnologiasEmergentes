@@ -16,7 +16,8 @@
         <div class="grid-x">
 
           <div class="cell small-8">
-            <div [ngClass]="'button ' + (stock > 0 ? cantElegida > 0 ? 'btnAnadir' : 'btnCancelar' : 'btnDesactivado')">
+            <div [ngClass]="'button ' + (stock > 0 ? cantElegida > 0 ? 'btnAnadir' : 'btnCancelar' : 'btnDesactivado')"
+              (click)="stock > 0 ? clickAnadir() : null">
               {{
                 stock > 0 ? (
                 estaEnCarrito
@@ -32,7 +33,7 @@
 
           <div class="cell auto">
             <input type="number" [min]="estaEnCarrito || stock == 0 ? 0 : 1" [max]="stock"
-              [value]="cantElegida">
+              [value]="cantElegida" (change)="cambiaCantidad($event)">
           </div>
         </div>
       </div>

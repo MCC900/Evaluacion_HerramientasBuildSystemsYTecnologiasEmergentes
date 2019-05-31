@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConexionBDService } from '../conexion-bd.service';
+import { ClienteTiendaService } from '../cliente-tienda.service';
 
 @Component({
   selector: 'catalogo',
@@ -11,7 +12,10 @@ export class CatalogoComponent implements OnInit {
   productos;
   filtroBusqueda:string = "";
 
-  constructor(private conexionBDService:ConexionBDService) { }
+  constructor(
+    private conexionBDService:ConexionBDService,
+    private clienteTiendaService:ClienteTiendaService
+  ) { }
 
   ngOnInit() {
     this.cargarProductos();

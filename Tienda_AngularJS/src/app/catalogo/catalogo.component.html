@@ -27,6 +27,9 @@
               [nombreProducto]="producto.nombre"
               [precio]="producto.precio"
               [stock]="producto.stock"
+
+              [estaEnCarrito]="clienteTiendaService.estaEnCarrito(producto._id)"
+              [cantElegida]="clienteTiendaService.estaEnCarrito(producto._id) ? 0 : 1"
             ></display-producto>
           </ng-container>
         </div>

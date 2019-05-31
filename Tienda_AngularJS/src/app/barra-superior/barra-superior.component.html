@@ -12,6 +12,9 @@
       <div class="menu-item">
         <a [routerLink]="['/carrito']">
           <i class="fi-shopping-cart"></i> Carrito
+          <div class="badge iconoNotifCarrito" *ngIf="clienteTiendaService.productosCarrito.length>0">
+            {{clienteTiendaService.productosCarrito.length}}
+          </div>
         </a>
       </div>
       <div class="menu-item">

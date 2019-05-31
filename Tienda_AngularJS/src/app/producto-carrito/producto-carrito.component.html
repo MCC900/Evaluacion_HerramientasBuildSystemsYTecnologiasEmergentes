@@ -1,0 +1,15 @@
+<div class="cell small-12 productoCarrito">
+  <div class="grid-x grid-margin-x" *ngIf="producto != null">
+    <div class="cell small-4">
+      <img [src]="'assets/imagenesBase/'+producto.nombreArchivo">
+    </div>
+    <div class="cell small-8">
+      <label class="lblProducto"><h4>{{producto.nombre}}</h4></label>
+      <label class="lblProducto"><b>Cantidad: </b>{{cantidad}}</label>
+      <label class="lblProducto"><b>Precio Unitario: </b>{{producto.precio}}</label>
+    </div>
+    <div class="cell small-12">
+      <label class="lblProducto"><h5>Subtotal: ${{producto.precio * cantidad}}</h5></label>
+    </div>
+  </div>
+</div>
