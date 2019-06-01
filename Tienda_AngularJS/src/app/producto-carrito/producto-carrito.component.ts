@@ -21,15 +21,17 @@ export class ProductoCarritoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //Inicializamos el componente cargando el producto y la cantidad desde el servidor
     this.cargarProducto(this.idProducto);
   }
 
+  //--Carga este ítem del carrito obtieniendo los datos del servidor
   cargarProducto(idProducto){
     this.conexionBDService.obtenerDetalleProducto(idProducto, (respuesta)=>{
       if(respuesta.exito){
         this.producto = respuesta.producto;
 
-        //Sumamos este subtotal al total con la función del Carrito pasada por props
+        //Sumamos este subtotal al total con la función del Carrito pasada por atributo (ver carrito.component.html)
         this.anadirSubtotal(respuesta.producto.precio * this.cantidad);
       } else {
         //ERROR

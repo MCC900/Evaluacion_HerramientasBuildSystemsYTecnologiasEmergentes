@@ -12,6 +12,8 @@ export class ConexionBDService {
   httpHeaders:HttpHeaders = new HttpHeaders({'Content-Type':'application/json'});
   options = {headers:this.httpHeaders, withCredentials:true,  observe:"response" as 'body'};
 
+  //Llama a la api del servidor de la tienda, con la ruta, datos y callback indicados
+  //Usada por todas las funciones expuestas abajo.
   llamadaAjax(ruta, datos, callback){
     let obsvRespuesta = this.httpClient.post(this.urlBase + ruta, datos, this.options);
     obsvRespuesta.subscribe((respuesta:any)=>{

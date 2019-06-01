@@ -18,18 +18,19 @@ export class DisplayProductoComponent{
 
   constructor(private clienteTiendaService:ClienteTiendaService) { }
 
-  ngOnInit(){
-  }
+  //Nos envía a la página con el detalle del producto
   clickVerMas(){
     this.clienteTiendaService.cambiarPagina("/producto/"+this.idProducto);
   }
 
+  //Añade, cambia o quita el producto del carrito
   clickAnadir(){
     this.clienteTiendaService.anadirProductoCarrito(this.idProducto, this.cantElegida);
     this.estaEnCarrito = this.cantElegida > 0;
     this.cantElegida = this.cantElegida == 0 ? 1 : 0;
   }
 
+  //Actualiza la cantidad cada vez que cambia el valor del input numérico
   cambiaCantidad(event){
     this.cantElegida = event.target.value;
   }

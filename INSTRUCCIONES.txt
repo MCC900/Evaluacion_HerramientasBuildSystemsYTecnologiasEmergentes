@@ -3,15 +3,23 @@ Para probar la versión ReactJS del proyecto Tienda:
 
 1) Acceder a la carpeta del proyecto, Tienda_ReactJS, mediante la consola de comandos.
 2) Ejecutar "npm install" para descargar todos las dependencias npm requeridas.
-3) Aparte, ejecutar un servidor Mongo con mongod (no incluído en el proyecto) y dejarlo andando.
-2) De nuevo en la carpeta del proyecto, ejecutar "npm run generarbd" para crear una base de datos con 3 usuarios y los productos de la tienda con stock al azar.
-3) Ejecutar "npm start" para iniciar webpack-dev-server, dejarlo andando.
-4) Ejecutar "npm run servidor" para iniciar el servidor de la tienda, dejarlo andando.
-5) Ir a http://localhost:8080 en el navegador.
+3) * Aparte, ejecutar un servidor Mongo con mongod (no incluído en el proyecto) y dejarlo andando.
+4) * De nuevo en la carpeta del proyecto, ejecutar "npm run generarbd" para crear una base de datos con 3 usuarios y los productos de la tienda con stock al azar.
+5) Ejecutar "npm start" para iniciar webpack-dev-server, dejarlo andando.
+6) Ejecutar "npm run servidor" para iniciar el servidor de la tienda, dejarlo andando.
+7) Ir a http://localhost:8080 en el navegador.
+8) * De ser necesario, se puede reabastecer la tienda con "npm run restock", que añade 20 unidades al stock cada producto.
 
-Se puede hacer login con cualquiera de estos 3 usuarios (email - contraseña):
- pedro@gmail.com - 12345
- jose@gmail.com - josejose
- maria@hotmail.com - 67890
+---Versión AngularJS---
+Para probar la versión AngularJS del proyecto Tienda:
 
-6) De ser necesario, se puede reabastecer la tienda con "npm run restock", que añade 20 unidades al stock cada producto.
+1) Acceder a la carpeta del proyecto, Tienda_AngularJS, mediante la consola de comandos.
+2) Ejecutar "npm install" para descargar todos las dependencias npm requeridas.
+3) * Aparte, ejecutar un servidor Mongo con mongod (no incluído en el proyecto) y dejarlo andando.
+4) * De nuevo en la carpeta del proyecto, ejecutar "npm run generarbd" para crear una base de datos con 3 usuarios y los productos de la tienda con stock al azar.
+5) Ejecutar "ng serve" para iniciar el servidor Angular, dejarlo andando.
+6) Ejecutar "npm run servidor" para iniciar el servidor de la tienda, dejarlo andando.
+7) Ir a http://localhost:4200 en el navegador.
+8) * De ser necesario, se puede reabastecer la tienda con "npm run restock", que añade 20 unidades al stock cada producto.
+
+* La base de datos Mongo es compartida por ambas versiones

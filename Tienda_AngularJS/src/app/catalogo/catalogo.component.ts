@@ -18,9 +18,11 @@ export class CatalogoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //Cargamos los productos del catálogo al iniciar
     this.cargarProductos();
   }
 
+  //Obtiene los productos de la BD del servidor
   cargarProductos(){
     let respuesta = this.conexionBDService.obtenerProductos((respuesta)=>{
       if(respuesta.exito){
@@ -34,11 +36,12 @@ export class CatalogoComponent implements OnInit {
     });
   }
 
+  //Se ejecuta en el evento (input) de la barra buscadora
   cambiaTextoBusqueda(event){
     this.filtroBusqueda = event.target.value;
-
   }
-
+  
+  //Devuelve true si el nombre de un producto pasa por el filtro de búsqueda
   coincideConFiltro(nombreProducto){
     let filtro = this.filtroBusqueda;
     if(filtro == ""){

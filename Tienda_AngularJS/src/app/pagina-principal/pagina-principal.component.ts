@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './pagina-principal.component.html',
   styleUrls: ['./pagina-principal.component.css']
 })
-export class PaginaPrincipalComponent implements OnInit {
-
+export class PaginaPrincipalComponent {
+  //Este componente no utiliza código
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

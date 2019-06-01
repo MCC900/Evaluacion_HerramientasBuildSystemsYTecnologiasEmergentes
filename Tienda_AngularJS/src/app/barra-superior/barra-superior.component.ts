@@ -18,6 +18,8 @@ export class BarraSuperiorComponent {
     private router:Router
   ) {}
 
+  /*Cierra la sesión en el servidor. Funcione o no regresa a la página de login llamando
+   a la función cambiarPagina() del servicio ClienteTiendaService */
   cerrarSesion(){
     this.conexionBDService.cerrarSesion((respuesta)=>{
       this.clienteTiendaService.cambiarPagina('');

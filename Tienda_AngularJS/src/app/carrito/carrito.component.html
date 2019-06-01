@@ -1,7 +1,9 @@
 <div class="grid-x">
+
   <div class="cell small-12 barra-titulo">
     <h4>Carrito</h4>
   </div>
+
   <div class="cell small-12 medium-6 listaProdsCarrito">
     <producto-carrito *ngFor="let productoCarrito of productosCarrito"
       [idProducto]="productoCarrito.idProducto"
@@ -9,17 +11,31 @@
       [anadirSubtotal]="anadirSubtotal.bind(this)"
     ></producto-carrito>
   </div>
+
   <div class="cell small-12 medium-6">
-    <div class="totalCarrito" *ngIf="todosProductosSumados">
+
+    <!--Si se sumaron todos los productos, y hay al menos uno-->
+    <div class="totalCarrito" *ngIf="todosProductosSumados && prodsSumados > 0">
+
       <h3><b>Total: </b> ${{totalCarrito}}</h3>
+
       <div class="button btnCancelar"
         (click)="vaciarCarrito()">
         Cancelar <i class="fi-x"></i>
       </div>
+
       <div [ngClass]="{button:true, btnPagar:logueado, btnDesactivado:!logueado}"
         (click)="logueado ? pagarCarrito() : null">
         Pagar <i class="fi-dollar"></i>
       </div>
+
     </div>
+
+    <!--Si faltan sumar productos o no hay ninguno-->
+    <div class="totalCarrito" *ngIf="!(todosProductosSumados && prodsSumados > 0)">
+      <h5>{{ this.todosProductosSumados ? "No hay productos en el carrito de compras" : "..."}}</h5>
+    </div>
+
   </div>
+
 </div>

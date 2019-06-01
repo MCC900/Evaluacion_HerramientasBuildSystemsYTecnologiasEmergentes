@@ -24,18 +24,21 @@ export class LoginComponent {
   emailValidCorrecta:boolean = false;
   contrasenaValidCorrecta:boolean = false;
 
+  //Al modificarse el input del email
   cambiaEmail(email, esValido){
     this.emailIngresado = email;
     this.emailValidCorrecta = esValido;
     this.verificarValidarDatos();
   }
 
+  //Al modificarse el input de la contraseña
   cambiaContrasena(contrasena, esValido){
     this.contrasenaIngresada = contrasena;
     this.contrasenaValidCorrecta = esValido;
     this.verificarValidarDatos();
   }
 
+  //Validamos los campos del lado del cliente
   verificarValidarDatos(){
     if(!this.validCorrecta && this.emailValidCorrecta && this.contrasenaValidCorrecta){
       this.validCorrecta = true;
@@ -43,7 +46,8 @@ export class LoginComponent {
       this.validCorrecta = false;
     }
   }
-
+  
+  //Prueba a hacer login con el email y la contraseña ingresada enviando los datos al servidor.
   intentarLogin(callback){
     let email = this.emailIngresado;
     let contrasena = this.contrasenaIngresada;

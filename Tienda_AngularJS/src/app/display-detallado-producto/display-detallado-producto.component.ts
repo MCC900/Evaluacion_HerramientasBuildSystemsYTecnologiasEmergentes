@@ -18,10 +18,16 @@ export class DisplayDetalladoProductoComponent implements OnInit{
   ) { }
 
   ngOnInit() {
+    /* Obtenemos la id del producto desde la url.
+      Los datos de la url están contenidos dentro del route (ActivatedRoute),
+      componente de angular router encargado de manipular la barra de direcciones. */
     let id = this.route.snapshot.paramMap.get('idProducto');
+    //Cargamos el detalle del producto, a partir de la id pasada a través de la URL (!)
+    //Ej: localhost:8080/producto/5cc50e5cfa0df01d94ac951b
     this.cargarProducto(id);
   }
 
+  //Obtiene los datos del producto del servidor
   cargarProducto(idProducto){
     this.conexionBDService.obtenerDetalleProducto(idProducto, (respuesta)=>{
       if(respuesta.exito){
@@ -33,6 +39,7 @@ export class DisplayDetalladoProductoComponent implements OnInit{
     })
   }
 
+  //Regresa al catálogo
   clickAtras(){
     this.clienteTiendaService.cambiarPagina("/catalogo");
   }

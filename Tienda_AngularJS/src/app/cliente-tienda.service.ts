@@ -18,6 +18,7 @@ export class ClienteTiendaService {
   productosCarrito = [];
   funcCargarCarrito = null;
 
+  //Cargamos el estado de sesión actual y el usuario logueado. Info usada por varios componentes
   getSesion(){
     this.conexionBDService.verificarSesion((respuesta)=>{
       if(respuesta.exito){
@@ -36,6 +37,7 @@ export class ClienteTiendaService {
     });
   }
 
+  //--Carga el carrito de la sesión previa del usuario--
   getCarritoSesion(){
     this.conexionBDService.obtenerCarrito((respuesta)=>{
       if(respuesta.exito){
@@ -51,11 +53,17 @@ export class ClienteTiendaService {
     });
   }
 
+  //Navega hacia la url indicada. Refresca la info de sesión al hacerlo.
   cambiarPagina(url){
     this.router.navigate([url]);
     this.getSesion();
   }
 
+  //--Añade un producto al carrito. Se llama desde un <display-producto> cuando el botón "Añadir", "Cambiar" o "Quitar" es clickeado
+  /* anadirProductoCarrito(idProducto, 0) para eliminar producto del carrito
+     anadirProductoCarrito(idProducto, n>0) --->Actualiza la cantidad si ya existe el producto
+                                            --->Agrega el producto al carrito en caso contrario, con esa cantidad
+  */
   anadirProductoCarrito(idProducto, cantidad){
     let prodsCarrito = this.productosCarrito;
     let existeProducto = false;
@@ -79,6 +87,7 @@ export class ClienteTiendaService {
     }
     this.productosCarrito = prodsCarrito;
 
+    //--Enviamos el carrito actualizado al servidor para que lo guarde en la BD
     this.conexionBDService.actualizarCarrito(prodsCarrito, (respuesta)=>{
       if(respuesta.exito){
         console.log("Carrito online de "+this.usuarioLogueado+" actualizado.");
@@ -92,6 +101,10 @@ export class ClienteTiendaService {
     });
   }
 
+  /*Verifica si el producto con la id pasada por parámetro ya se encuentra en el carrito.
+    utilizada por catalogo.component.html al crear los <display-producto> en el *ngFor correspondiente.
+    El resultado es pasado por atributo a <display-producto>, el cual luego lo utiliza para saber
+    si debe mostrar el botón Añadir o Quitar, según el producto ya esté en el carrito o no.*/
   estaEnCarrito(idProducto){
     for(let i=0; i<this.productosCarrito.length; i++){
       if(this.productosCarrito[i].idProducto == idProducto){
@@ -101,6 +114,7 @@ export class ClienteTiendaService {
     return false;
   }
 
+  //--Vacía el carrito aquí y en el servidor/BD--
   vaciarCarrito(){
     this.productosCarrito = [];
 
